@@ -1,4 +1,4 @@
-//Assignment
+///lab Assignment 
 #include <iostream>
 
 using namespace std;
@@ -25,6 +25,7 @@ struct List
     {
         head=NULL;
     }
+    ///1
     void insert(int value)
     {
         Node *n=new Node(value);
@@ -40,6 +41,7 @@ struct List
             temp->next=n;
         }
     }
+    ///2.Insert Node at the end
     void insertAtEnd(int data)
     {
         Node* n = new Node(data);
@@ -56,6 +58,7 @@ struct List
             temp->next = n;
         }
     }
+    ///3.Insertion of a Node after a given Node
     void insertAfter(int value,int pos)
     {
         Node *n=new Node(value);
@@ -73,6 +76,7 @@ struct List
             n->next=ptr;
         }
     }
+    ///4.Insertion of a Node before a given Node
     void insert_before(int value,int pos)
     {
         Node *n=new Node(value);
@@ -100,19 +104,21 @@ struct List
             n->next=ptr;
         }
     }
+    ///5.Find the given value
     void find(int x)
     {
         int i;
         for(i=1, temp = head;temp->next != NULL && temp->data != x;temp = temp->next, i++);
         if(temp->data == x)
         {
-            cout << "Found at position:" << i << endl;
+            cout << x <<" Found at position:" << i << endl;
         }
         else if(temp->next == NULL)
         {
             cout << "Error: Number Not found..." << endl;
         }
     }
+    ///6.Deletion of given item
     void remove(int item)
     {
         temp=head;
@@ -143,6 +149,49 @@ struct List
             }
         }
     }
+    ///7.Deletion at the  End
+    void remove_last_Node()
+    {
+        Node *ptr=head;
+        Node *preptr=ptr;
+        while(ptr->next != NULL)
+        {
+            preptr=ptr;
+            ptr=ptr->next;
+        }
+        if(ptr->next==NULL)
+        {
+            preptr->next=NULL;
+            delete ptr;
+        }
+    }
+    ///8.Deletion after a given a Node
+    void remove_after(int item)
+    {
+        Node *ptr=head;
+        Node *preptr;
+
+        while(preptr->data !=item)
+        {
+            preptr=ptr;
+            ptr=ptr->next;
+        }
+            temp=ptr;
+            preptr->next=ptr->next;
+            delete temp;
+
+    }
+    ///9.Deletion first Node
+    void remove_first_Node()
+    {
+        Node *ptr;
+        ptr=head;
+        head=head->next;
+        delete head;
+
+    }
+
+    ///10.Travesting Linked List
     void display()
     {
         if(!isEmpty())
@@ -170,11 +219,19 @@ int main()
     l1.display();
     l1.insertAfter(4,2);
     l1.display();
-    l1.insert_before(8,9);
+    l1.insert_before(1,2);
     l1.display();
+    l1.find(7);
+
     l1.remove(7);
     l1.display();
-    l1.find(9);
+    l1.remove_last_Node();
     l1.display();
+    l1.remove_after(1);
+    l1.display();
+    l1.remove_first_Node();
+    l1.display();
+
+
     return 0;
 }
